@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: tx-manager
+  profiles:
+    active: ${profiles.active}
+  cloud:
+    config:
+      label: ${configLabel}
+      discovery:
+        enabled: true
+        service-id: cloud-config
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    serviceUrl:
+      defaultZone: ${eurekaAddress}
+    #register-with-eureka: false
